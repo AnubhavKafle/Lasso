@@ -104,6 +104,7 @@ def mlpack_lasso_cv(geno, expr, alphas):
     pvals = np.array([(1 - stats.chi2.cdf(i, paranum[j])) for j,i in enumerate(LLR_snp)])
     pvals = np.array([1 if math.isnan(i) else i for i in pvals])
     snp_qualified = np.array(np.where(pvals <= 0.001)[0])
+    #snp_qualified = np.array(np.where(np.logical_and(pvals <= 0.05, paranum >= 15))[0])
     print(snp_qualified.shape[0],pvals)
     snp_index = list()
     for i in range(ngene):
